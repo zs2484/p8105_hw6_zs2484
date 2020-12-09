@@ -116,6 +116,8 @@ model =
   broom::tidy()
 ```
 
+I use backward elimination to select variables.
+
 ```{r}
 model
 
@@ -170,7 +172,11 @@ cv_df %>%
   geom_violin()
 ```
 
+From the plot, the model I fit using backward selection among other models has the lowest rmse among.
+
 ## Problem 3
+
+Load the data
 
 ```{r, message = FALSE}
 weather_df = 
@@ -204,7 +210,11 @@ weather_bootstrap_rsquared =
 weather_bootstrap_rsquared %>% 
   ggplot(aes(x = r.squared)) + 
   geom_density()
+```
 
+We see a normal distribution distribution with a mean value at around 0.91.
+
+```{r}
 weather_bootstrap_rsquared %>%
   summarise(
     ci_lower=quantile(r.squared,0.025),
@@ -212,7 +222,7 @@ weather_bootstrap_rsquared %>%
   )
 ```
 
-
+The confidence interval r^2 is (0.894, 0.927).
 
 ```{r}
 set.seed(1)
@@ -237,7 +247,11 @@ weather_bootstrap_log =
 weather_bootstrap_log %>% 
   ggplot(aes(x = log)) + 
   geom_density() 
+```
 
+From the graph, we see a normal distribution distribution with a mean value at around 2.01.
+
+```{r}
 weather_bootstrap_log %>%
   summarise(
     ci_lower=quantile(log,0.025),
@@ -245,8 +259,7 @@ weather_bootstrap_log %>%
   )
 ```
 
-
-
+The 95% confidence interval for log(beta0*beta1) is (1.96, 2.06).
 
 
 
